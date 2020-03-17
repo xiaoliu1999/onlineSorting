@@ -1,10 +1,8 @@
 /*******************************主框架 ******************************/
-body {
+.content_container{
 	width: 90%;
-	min-width: 1000px;
-	padding: 0px;
-	margin: 0px auto;
-	padding-bottom: 40px;
+	margin: 0 auto;
+	overflow: hidden;
 }
 .left {
 	width: 40%;
@@ -21,6 +19,7 @@ body {
 .bottom {
 	width: 100%;
 	float: left;
+	display: none;
 }
 
 /****清除浮动*******/
@@ -41,12 +40,14 @@ body {
 .panel {
 	border: 2px solid #0A5A94;
 	border-top: none;
-	width: 100%;
-	height: 250px;
+	width: 99%;
+	height: 220px;
 	position: relative;
-	margin-top: 50px;
+	margin-top: 45px;
 }
-
+.panel:nth-child(2){
+	display: none;
+}
 /* panel的圆框 */
 .line {
 	position: absolute;
@@ -88,6 +89,12 @@ body {
 	font-size: 15px;
 	text-indent: 2em;
 	line-height: 2em;
+	animation: appear 0.5s ease;
+}
+@keyframes appear
+{
+from {transform:scale(0);}
+to {transform:scale(1);}
 }
 
 /*****代码panel****/
@@ -97,19 +104,29 @@ body {
 
 /*****排序panel****/
 .panel_sort {
-	height: 385px;
+	height: 370px;
+	margin-bottom: 40px;
 }
-
+.hljs{
+	height: 180px;
+	    padding-bottom: 15px;
+	overflow-y: hidden;
+}
+.hljs code{
+	overflow-y: scroll!important;
+	animation: appear 0.5s ease;
+}
 /*****分析panel****/
 .analyse_container_left {
 	width: 55%;
 	min-width: 220px;
-	height: 200px;
+	height: 170px;
 	position: absolute;
 	top: 40px;
 	left:0px;
 	overflow-y: scroll;
 	border: none;
+	z-index: 2;
 }
 .analyse_container_right{
 	position: absolute;
@@ -117,6 +134,7 @@ body {
 	top:40px;
 	width: 40%;
 	min-width: 200px;
+	z-index: 1;
 }
 .analyse_container_left p {
 	line-height: 12px;
@@ -141,6 +159,20 @@ body {
 	line-height: 30px;
 	font-size: 13px;
 	font-weight: 500;
+}
+.num{
+	animation: slideDown 0.5s ease;
+}
+.speed{
+	animation: slideUp 0.5s ease;
+}
+@keyframes slideDown{
+	from{transform: translateY(-200px);}
+	to{transform: translateY(0px);}
+}
+@keyframes slideUp{
+	from{transform: translateY(200px);}
+	to{transform: translateY(0px);}
 }
 
 /* 拖动条样式 */
@@ -200,11 +232,12 @@ margin: 0;
 .btn{
 	width: 100%;
 	margin: 0px auto;
-	margin-top: 60px;
+	margin-top:30px;
 	text-align: center;
 	float: left;
 	margin-bottom: 50px;
 }
+
 .btn_after{
 	width: 100%;
 	margin-left: -25%;
@@ -307,8 +340,23 @@ margin: 0;
 	border-bottom-width: 0px!important;
 	bottom: -3px!important;
 }
- 
-
+#input{
+	animation: slideRight .5s ease;
+}
+#random{
+	animation: slideLeft .5s ease;
+}
+@keyframes slideLeft{
+	from{transform: translateX(200px);}
+	to{transform: translateX(0px);}
+}
+@keyframes slideRight{
+	from{transform: translateX(-200px);}
+	to{transform: translateX(0px);}
+}
+.btn_start_restart{
+	overflow: hidden;
+}
 /*******************************排序过程样式 ******************************/
 #progressContainer {
 	width: 100%;
@@ -339,9 +387,9 @@ margin: 0;
 	z-index: 99;
 }
 #inputVal{
-	margin-top: 40px;
+	margin-top: 30px;
 	padding: 0px;
-	margin-bottom: 40px;
+	margin-bottom: 30px;
 }
 /* 排序块 */
 .block {
@@ -351,20 +399,46 @@ margin: 0;
 	position: relative;
 	transition: all 1s ease;
 	display: inline-block;
+	animation: blockAppear 0.5s ease;
 }
-
+@keyframes blockAppear{
+	from{width: 0px;}
+	to{width: 50px;}
+}
 .block span {
 	top: -20px;
 	position: absolute;
 	left: 15px;
 }
-
 #randomVal {
-	margin-top: 40px;
+	margin-top: 30px;
 	margin-left: 5%;
 }
-
 #randomVal span {
 	padding: 10px;
 }
+.analyse_container_left::-webkit-scrollbar-track {
+-webkit-box-shadow:inset 0 0 5px rgba(0,0,0,0.3);
+background-color:#000000;
+}
+.analyse_container_left::-webkit-scrollbar {
+	width:5px;
+	background-color:#000000;
+}
+.analyse_container_left::-webkit-scrollbar-thumb {
+	background-color:#F5F5F5;
+}
+
+.hljs::-webkit-scrollbar-track {
+-webkit-box-shadow:inset 0 0 5px rgba(0,0,0,0.3);
+background-color:#000000;
+}
+.hljs::-webkit-scrollbar {
+	width:5px;
+	background-color:#000000;
+}
+.hljs::-webkit-scrollbar-thumb {
+	background-color:#F5F5F5;
+}
+
 
