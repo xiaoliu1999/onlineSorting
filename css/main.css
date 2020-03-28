@@ -1,3 +1,4 @@
+/* 框架 */
 body {
 	width: 90%;
 	min-width:1100px;
@@ -29,3 +30,448 @@ body {
 	margin: 0px auto;
 	left: 25%;
 }
+
+/*******************************主框架 ******************************/
+.content_container{
+	width: 90%;
+	margin: 0 auto;
+	overflow: hidden;
+}
+.left {
+	width: 40%;
+	height: auto;
+	float: left;
+}
+
+.right {
+	width: 58%;
+	margin-left: 2%;
+	float: left;
+}
+
+.bottom {
+	width: 100%;
+	float: left;
+	display: none;
+}
+
+/****清除浮动*******/
+.clearfix {
+	*zoom: 1;
+	/*ie6*/
+}
+
+.clearfix:after {
+	content: "";
+	display: block;
+	height: 0;
+	clear: both;
+	visibility: hidden;
+}
+
+/*******************************panel样式 ******************************/
+.panel {
+	border: 2px solid #0A5A94;
+	border-top: none;
+	width: 99%;
+	height: 220px;
+	position: relative;
+	margin-top: 45px;
+}
+.panel:nth-child(2){
+	display: none;
+}
+/* panel的圆框 */
+.line {
+	position: absolute;
+	top: 0px;
+	height: 2px;
+	background: #0A5A94;
+}
+
+.left-line {
+	left: 0px;
+	width: 25%;
+	z-index: -1;
+}
+
+.right-line {
+	right: 0px;
+	width: 25%;
+	z-index: -1;
+}
+
+.panel_title {
+	width: 50%;
+	height: 40px;
+	line-height: 40px;
+	text-align: center;
+	border: 2px dotted #0A5A94;
+	position: absolute;
+	top: -20px;
+	left: 25%;
+	border-radius: 40px;
+	color: #000;
+	font-size: 20px;
+	background-color: #fff;
+}
+
+.panel p {
+	padding: 10px;
+	padding-top: 50px;
+	font-size: 15px;
+	text-indent: 2em;
+	line-height: 2em;
+	animation: appear 0.5s ease;
+}
+@keyframes appear
+{
+from {transform:scale(0);}
+to {transform:scale(1);}
+}
+
+/*****代码panel****/
+.panel_code {
+	background-color: #444;
+}
+
+/*****排序panel****/
+.panel_sort {
+	height: 370px;
+	margin-bottom: 40px;
+}
+.hljs{
+	height: 180px;
+	    padding-bottom: 15px;
+	overflow-y: hidden;
+}
+.hljs code{
+	overflow-y: scroll!important;
+	animation: appear 0.5s ease;
+}
+/*****分析panel****/
+.analyse_container_left {
+	width: 55%;
+	min-width: 220px;
+	height: 170px;
+	position: absolute;
+	top: 40px;
+	left:0px;
+	overflow-y: scroll;
+	border: none;
+	z-index: 2;
+}
+.analyse_container_right{
+	position: absolute;
+	right: 0px;
+	top:40px;
+	width: 40%;
+	min-width: 200px;
+	z-index: 1;
+}
+.analyse_container_left p {
+	line-height: 12px;
+	padding: 5px;
+	padding-left:10px;
+} 
+.analyse_container_right p {
+	line-height: 12px;
+	padding: 5px;
+	padding-left:10px;
+} 
+.analyse_current_p{
+	color: red;
+	padding-left: 0px!important;
+	font-size: 16px!important;
+	transition: all 0.5s ease;
+}
+/*******************************btn控制组样式 ******************************/
+.num , .speed{
+	margin: 15px;
+	position: relative;
+	line-height: 30px;
+	font-size: 13px;
+	font-weight: 500;
+}
+.num{
+	animation: slideDown 0.5s ease;
+}
+.speed{
+	animation: slideUp 0.5s ease;
+}
+@keyframes slideDown{
+	from{transform: translateY(-200px);}
+	to{transform: translateY(0px);}
+}
+@keyframes slideUp{
+	from{transform: translateY(200px);}
+	to{transform: translateY(0px);}
+}
+
+/* 拖动条样式 */
+#inputRange,#speedRange{
+	width: 100px;
+	margin-left: 10px;
+	top: 5px;
+	outline: none;
+	-webkit-appearance: none;
+	background:-webkit-linear-gradient(#ff4500, #ff4500) no-repeat, #ddd;
+	height: 3px;
+}
+#inputRange{
+	background-size: 66.6667px;
+}
+#speedRange{
+	background-size: 50px;
+}
+ /*拖动块的样式*/  
+#inputRange::-webkit-slider-thumb ,#speedRange::-webkit-slider-thumb {  
+ -webkit-appearance: none;/*清除系统默认样式*/  
+height:16px;/*拖动块高度*/  
+width: 16px;/*拖动块宽度*/  
+background: #fff;/*拖动块背景*/  
+border-radius: 50%; /*外观设置为圆形*/  
+ border: solid 1px #ddd; /*设置边框*/  
+}
+#inputNum,#sortSpeed,#inputBoxNum{
+	display: inline;
+	width: 20px;
+	height: 15px;
+	outline-style: none;
+	border: 1px solid #ff4500;
+	border-radius: 3px;
+	padding: 5px;
+	font-size: 14px;
+	text-align: center;
+	line-height: 15px;
+}
+#inputNum:focus,#sortSpeed:focus,#inputBoxNum:focus{
+    border-color: #ff4500;
+    outline: 0;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgb(255, 69, 0);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgb(255, 69, 0)
+	 -moz-appearance: textfield;
+}
+#inputNum::-webkit-inner-spin-button,
+#inputNum::-webkit-outer-spin-button,
+#sortSpeed::-webkit-inner-spin-button,
+#sortSpeed::-webkit-outer-spin-button,
+#inputBoxNum::-webkit-inner-spin-button,
+#inputBoxNum::-webkit-outer-spin-button{
+-webkit-appearance: none;
+margin: 0;
+}
+/* 来源https://segmentfault.com/a/1190000019943757?utm_source=tag-newest */
+.btn{
+	width: 100%;
+	margin: 0px auto;
+	margin-top:30px;
+	text-align: center;
+	float: left;
+	margin-bottom: 50px;
+}
+
+.btn_after{
+	width: 100%;
+	margin-left: -25%;
+	margin-top: 40px;
+}
+
+.btn button {
+	position: relative;
+	background: orangered;
+	border: none;
+	color: white;
+	padding: 10px 20px;
+	font-size: 1em;
+	outline: none;
+	box-shadow: -6px 6px 0 hsl(16, 100%, 30%);
+
+}
+
+.btn button::before {
+	content: "";
+	display: block;
+	width: 0;
+	height: 0;
+	position: absolute;
+	top: 0;
+	left: -6px;
+	border: 6px solid transparent;
+	border-right: 6px solid hsl(16, 100%, 30%);
+	border-left-width: 0px;
+}
+
+.btn button::after {
+	content: "";
+	display: block;
+	width: 0;
+	height: 0;
+	position: absolute;
+	bottom: -6px;
+	right: 0;
+	border: 6px solid transparent;
+	border-top: 6px solid hsl(16, 100%, 30%);
+	border-bottom-width: 0px;
+}
+
+.btn button:hover {
+	cursor: pointer;
+	background: hsl(16, 100%, 40%);
+	top: 3px;
+	left: -3px;
+	font-size: 1em;
+	box-shadow: -3px 3px 0 hsl(16, 100%, 30%);
+}
+
+.btn button:hover::before {
+	border: 3px solid transparent;
+	border-right: 3px solid hsl(16, 100%, 30%);
+	border-left-width: 0px;
+	left: -3px;
+}
+
+.btn button:hover::after {
+	border: 3px solid transparent;
+	border-top: 3px solid hsl(16, 100%, 30%);
+	border-bottom-width: 0px;
+	bottom: -3px;
+}
+.btn span {
+	display: inline-block;
+	position: relative;
+	background: orangered;
+	border: none;
+	color: white;
+	padding: 2px 2px;
+	font-size: 1rem;
+	outline: none;
+	box-shadow: -6px 6px 0 hsl(16, 100%, 30%);
+	margin: 10px;
+}
+/* 禁用按钮样式 */
+.btn_hover{
+	cursor: pointer;
+	background: hsl(16, 100%, 40%)!important;
+	top: 3px;
+	left: -3px;
+	color: #dddddd;
+	box-shadow: -3px 3px 0 hsl(16, 100%, 30%)!important;
+}
+.btn_hover:hover{
+	cursor: not-allowed!important;
+}
+.btn_hover::before {
+	border: 3px solid transparent!important;
+	border-right: 3px solid hsl(16, 100%, 30%)!important;
+	border-left-width: 0px!important;
+	left: -3px!important;
+}
+.btn_hover::after {
+	border: 3px solid transparent!important;
+	border-top: 3px solid hsl(16, 100%, 30%)!important;
+	border-bottom-width: 0px!important;
+	bottom: -3px!important;
+}
+#input{
+	animation: slideRight .5s ease;
+}
+#random{
+	animation: slideLeft .5s ease;
+}
+@keyframes slideLeft{
+	from{transform: translateX(200px);}
+	to{transform: translateX(0px);}
+}
+@keyframes slideRight{
+	from{transform: translateX(-200px);}
+	to{transform: translateX(0px);}
+}
+.btn_start_restart{
+	overflow: hidden;
+}
+/*******************************排序过程样式 ******************************/
+#progressContainer {
+	width: 100%;
+	text-align: center;
+}
+#progressControl{
+	width: 100%;
+	text-align: center;
+	margin-top: 20px;
+}
+#progressControl button{
+	padding: 5px 9px;
+	font-size: 1em;
+	margin-left: 20px;
+	margin-right: 20px;
+}
+#inputVal input{
+	width: 25px;
+	height: 25px;
+	margin-left: 10px;
+}
+#btn_inputComplete{
+	width: 40px;
+	height: 30px;
+	font-size: 15px!important;
+	padding: 3px 5px!important;
+	margin-left: 20px;
+	z-index: 99;
+}
+#inputVal{
+	margin-top: 30px;
+	padding: 0px;
+	margin-bottom: 30px;
+}
+/* 排序块 */
+.block {
+	width: 50px;
+	background-color: red;
+	margin-left: 10px;
+	position: relative;
+	transition: all 1s ease;
+	display: inline-block;
+	animation: blockAppear 0.5s ease;
+}
+@keyframes blockAppear{
+	from{transform: translateX(-10px);}
+	to{transform: translateX(0px);}
+}
+.block span {
+	top: -20px;
+	position: absolute;
+	left: 15px;
+}
+#randomVal {
+	margin-top: 30px;
+	margin-left: 5%;
+}
+#randomVal span {
+	padding: 10px;
+}
+.analyse_container_left::-webkit-scrollbar-track {
+-webkit-box-shadow:inset 0 0 5px rgba(0,0,0,0.3);
+background-color:#000000;
+}
+.analyse_container_left::-webkit-scrollbar {
+	width:5px;
+	background-color:#000000;
+}
+.analyse_container_left::-webkit-scrollbar-thumb {
+	background-color:#F5F5F5;
+}
+
+.hljs::-webkit-scrollbar-track {
+-webkit-box-shadow:inset 0 0 5px rgba(0,0,0,0.3);
+background-color:#000000;
+}
+.hljs::-webkit-scrollbar {
+	width:5px;
+	background-color:#000000;
+}
+.hljs::-webkit-scrollbar-thumb {
+	background-color:#F5F5F5;
+}
+
+

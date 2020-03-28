@@ -4,6 +4,7 @@
 // --------------------------------------------页面初始化布局--------------------------------------------
 		 //页面刷新后停留在当前排序
 		 var currSort=sessionStorage.getItem("sortType");
+		 //设置排序算法信息和实现伪码
 		  if(currSort!=null){ 
 		 	 $("#sortInfo").html(Info[currSort+"Info"]);
 		 	 $("code").html(Code[currSort+"Code"]);
@@ -16,7 +17,6 @@
 		 //代码高亮
 		 hljs.initHighlightingOnLoad();
 	    $('pre code').each(function(i, e) {hljs.highlightBlock(e)});
-		
 		
 		 //新建对象
 	     var sortObj=new sortInit();
