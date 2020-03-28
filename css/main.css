@@ -435,7 +435,7 @@ margin: 0;
 	animation: blockAppear 0.5s ease;
 }
 @keyframes blockAppear{
-	from{transform: translateX(-10px);}
+	from{transform: translateX(-60px);}
 	to{transform: translateX(0px);}
 }
 .block span {
