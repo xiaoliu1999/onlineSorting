@@ -5,6 +5,7 @@ function sortInit(){
 	this.sortNum=10;//排序个数
 	this.compareTime=0;
 	this.changeTime=0;
+	this.duration=(7-this.sortSpeed) * 500;
 	this.valueType=""//random为随机排序;input为输入值
 	//排序序列初始化
 	this.initRandomSort=function(val){
@@ -38,11 +39,12 @@ function sortInit(){
 	//排序序列初始化
 	this.initInputSort=function(val){
 		//显示输入数字
-		$('#progressContainer').append("<p id='inputVal' class='btn'>请输入:</p>");
+		$('#progressContainer').append("<p id='inputVal' class='btn'></p>");
+		$('#progressContainer p').append("<form onsubmit='return false;'>请输入:</form>");
 		for(var i=0;i<val;i++){
-			$('#progressContainer p').append("<input type='number' id='inputBoxNum'></input>")
+			$('#progressContainer form').append("<input type='number' required='required' id='inputBoxNum'></input>")
 		}
-		$('#progressContainer p').append("<button id='btn_inputComplete'>完成</button>");
+		$('#progressContainer form').append("<button id='btn_inputComplete'  >完成</button>");
 		this.valueType="input";
 	}
 	//展示排序块
@@ -65,10 +67,16 @@ function sortInit(){
 	//开始排序
 	this.startSort=function(){
 		if(currentSort=="bubbleSort") this.bubbleSortStart();
+		else if(currentSort=="insertSort") this.insertSortStart();
 		else alert("开发中")
 	}
 	this.restart=function(){
-		this.bubbleSortRetart()
+		$("#progressContainer").empty();
+		$(".analyse_container_left").empty();
+		var highestTimeoutId = setTimeout(";");
+		for (var i = 0 ; i < highestTimeoutId ; i++) {
+			clearTimeout(i); 
+		}
 	}
 	//摧毁排序
 	this.destroySort=function(){

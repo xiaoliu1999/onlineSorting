@@ -1,161 +1,158 @@
 //用于存放排序过程中的节点
-function insertDom(){
-	//current当前节点相邻节点，格式：{index:0,value:1} index为节点下标，value为节点值
-	//before当前节点之前需要移动的节点数组，数组元素格式：{index:0,value:1} index为节点下标，value为节点值 
-	//exchange标记相邻节点是否交换
-	this.current={};
-	this.before=new Array();
+function insertDom() {
+	// curData为{}对象，格式{index:0,value:1}
+	// insertHistory为{}对象数组，存放比较记录，每个{}格式为{index:0,value:1}
+	this.curData = {};
+	this.insertHistory = [];
 }
-//排序类
-function insert(){
-	this.sortVal=[];//排序数值
-	this.sortSpeed=3;//排序速度,每次交换间隔为7-
-	this.sortNum=10;//排序个数
-	this.sortQueen=[];//用于存放排序过程中的数组
-	this.compareTime=0;
-	this.changeTime=0;
-	this.valueType=""//random为随机排序;input为输入值
-	//排序序列初始化
-	this.initRandomSort=function(val){
-		//显示随机数字
-		var rand_p=$("<p id='randomVal'>随机数据为</p>");
-		$('#progressContainer').append(rand_p);
-		for(var i=0;i<val.length;i++){
-			(function(val){
-				var rand=$("<span></span>");
-				rand.text(val);
-				$('#randomVal').append(rand);
-				
-			})(val[i]);
+// 排序实现
+sortInit.prototype.insertSort = function(arr) {
+	this.changeTime = 0;
+	this.compareTime = 0;
+	this.sortQueen = [];
+	var len = arr.length;
+	var preIndex, current;
+	for (var i = 0; i < len; i++) {
+		preIndex = i - 1;
+		current = arr[i];
+		var iDom = new insertDom();
+		iDom.curData = { index:i , value:current}
+		while(preIndex >= 0 && arr[preIndex] > current) {
+			this.changeTime++;
+			var ins = { index:preIndex , value:arr[preIndex] };
+			iDom.insertHistory.push(ins);
+			arr[preIndex+1] = arr[preIndex];
+			preIndex--;
 		}
-		this.valueType="random";
-		//显示图形
-		this.displayBlock(val);
+		arr[preIndex+1] = current;
+		this.sortQueen.push(iDom);
+		this.compareTime++;
 	}
-	//排序序列初始化
-	this.initInputSort=function(val){
-		//显示输入数字
-		$('#progressContainer').append("<p id='inputVal' class='btn'>请输入:</p>");
-		for(var i=0;i<val;i++){
-			$('#progressContainer p').append("<input type='number' id='inputBoxNum'></input>")
-		}
-		$('#progressContainer p').append("<button id='btn_inputComplete'>完成</button>");
-		this.valueType="input";
-	}
-	//展示排序块
-	this.displayBlock=function(values){
-		for(var i=0;i<values.length;i++){
-			(function(val){
-				//数值块
-				var div=$("<div class='block'></div>");
-				if(val>200) div.height(200);
-				else div.height(val);
-				div.css('marginTop',200-val);
-				$('#progressContainer').append(div);
-				//数值
-				var span=$("<span></span>");
-				span.text(val);
-				div.append(span);
-			})(values[i]);
-		}
-	}
-	//排序实现
-	this.insertSort=function(arr){
-		this.changeTime=0;
-		this.compareTime=0;
-		this.sortQueen=[];
-		var preIndex, current;
-		for (var i = 1; i < arr.length; i++) {
-			preIndex = i - 1;
-			current = arr[i];
-			var iDom=new insertDom();
-			iDom.current={index:i,value:current};
-			while(preIndex >= 0 && arr[preIndex] > current) {
-				iDom.push({index:preIndex,value:arr[preIndex]});
-				arr[preIndex+1] = arr[preIndex];
-				preIndex--;
+	console.log(this.sortQueen);
+}
+// 排序演示
+sortInit.prototype.insertSortDisplay = function(insertDom,resolveUp) {
+	var curDom = $('#progressContainer div').eq(insertDom.curData.index);
+	var preDom = $('#progressContainer div').eq(insertDom.curData.index-1)
+	var curLength=insertDom.insertHistory.length;
+	var curIndex=insertDom.curData.index;
+	// 当前block上移
+	curDom.addClass("blockInsertActive")
+	curDom.siblings().removeClass("blockInsertActive")
+	// 第一个block，插入直接下移
+	if(curIndex == 0){
+		this.insertSortAnalyse(insertDom.curData.value,true);
+		setTimeout(()=>{
+			resolveUp();
+		},this.duration/8)
+	// 不是第一个且不需插入，不交一次后下移
+	}else if(curLength==0){
+		this.insertSortAnalyse(insertDom.curData.value,true);
+		new Promise((resolve)=>{
+			setTimeout(()=>{
+				preDom.addClass("blockBlack")
+				curDom.addClass("blockBlack")
+			},this.duration/8)
+			setTimeout(()=>{
+				resolve();
+			},this.duration/6)
+		}).then(()=>{
+			preDom.removeClass("blockBlack")
+			curDom.removeClass("blockBlack")
+			resolveUp();
+		})
+	// 向前插入，插入完毕下移
+	}else{
+		new Promise((resolve) =>{
+			let curK=0;
+			for(let k=0;k<curLength;k++){
+				let cDom = $('.blockInsertActive');
+				setTimeout(()=>{
+					let pDom = $('#progressContainer div').eq(insertDom.insertHistory[k].index);
+					setTimeout(()=>{
+						pDom.addClass("blockBlack")
+						cDom.addClass("blockBlack")
+					},this.duration/10)
+					this.insertSortAnalyse(insertDom.curData.value,false,insertDom.insertHistory[k].value);
+					setTimeout(()=>{
+						pDom.removeClass("blockBlack")
+						cDom.removeClass("blockBlack")
+						cDom.remove();
+						cDom.insertBefore(pDom)
+						cDom.addClass("blockInsertActive")
+						curK++;
+						// 当前数值插入完毕，向上返回
+						if(curK==curLength){
+							resolve();
+						}
+					},this.duration/4)
+					
+				},(this.duration/3)*(k+1))
+				// console.log("当前k="+curK)
 			}
-			arr[preIndex+1] = current;
-			console.log(iDom);
-		}
-		     
+		// 向前插入完毕，结束当前数值插入
+		}).then(()=>{
+			setTimeout(()=>{
+				var cDom = $('.blockInsertActive');
+				cDom.removeClass("blockBlack")
+				resolveUp();
+			},this.duration/8)
+			
+		})
 	}
-	//排序动画演示
-	this.displaySort=function(insertDom){
-		var preDom=$('#progressContainer div').eq(insertDom.pre.index);
-		var lastDom=$('#progressContainer div').eq(insertDom.last.index);
-		preDom.css("backgroundColor","#000000");
-		lastDom.css("backgroundColor","#000000");
-		setTimeout(function(){
-			if(insertDom.exchange){
-				preDom.remove(); 
-				preDom.insertAfter(lastDom);
-			} 
-		},(7-this.sortSpeed)*500/2);
-		setTimeout(function(){
-			preDom.css("backgroundColor","#ff0000");
-			lastDom.css("backgroundColor","#ff0000");
-		},(7-this.sortSpeed)*500/2);
+}
+sortInit.prototype.insertSortAnalyse = function(curData,inOrder,preData) {
+	console.log("当前："+curData);
+	console.log("是否有序："+inOrder);
+	console.log("比较："+preData);
+	let curP;
+	if(inOrder) {
+		curP=`<p class="curData">${curData}：已有序</p>`
+	}else{
+		curP=`<p class="curData">${curData}：向前插入</p>`
 	}
-	//排序分析展示
-	this.showSort=function(insertDom,k){
-		var pre=insertDom.pre.value;
-		var last=insertDom.last.value;
-		var exchange=":交换";
-		if(!insertDom.exchange)  exchange=":不交换";
-		var analyse="比较"+pre+"和"+last+exchange;
-		var analyse_p=$("<p></p>");
-		analyse_p.text(analyse);
-		$(".analyse_container_left").append(analyse_p);
-		var offset_p=45*k;
-		$(".analyse_container_left").scrollTop(offset_p);
-		$(".analyse_container_left p").removeClass("analyse_current_p");
-		$(".analyse_container_left p").eq(k).addClass("analyse_current_p");
+	 $(".analyse_container_left").append(curP)
+	var offset_p = 45 * this.compareTime;
+	$(".analyse_container_left").scrollTop(offset_p);
+	$(".analyse_container_right p").eq(2).text("比较次数为" + this.compareTime);
+	$(".analyse_container_right p").eq(3).text("交换次数为" + this.changeTime);
+}
+// 开始排序
+sortInit.prototype.insertSortStart = function() {
+	// 整体下移
+	$('#progressContainer div').addClass("blockInsertMargin")
+	// 存放异步操作的数组
+	let promiseThenArray=[];
+	// 新建异步,执行第一个数值的排序展示
+	let p = new Promise((resolve) =>{
+		setTimeout(()=>{
+			this.insertSortDisplay(this.sortQueen[0],resolve);
+		},this.duration/4)
+	})
+	// 异步的第一个then，执行第二个数值的排序展示
+	let pThen=promiseThen(p,1);
+	// 依次将每个异步推入数组
+	promiseThenArray.push(pThen);
+	for(let k=0;k<this.sortQueen.length-2;k++){
+		let newP=promiseThen(promiseThenArray[k],k+2);
+		promiseThenArray.push(newP);
 	}
-	//开始排序
-	this.startSort=function(){
-		var that=this;
-		for(var k=0;k<this.sortQueen.length;k++){
-			(function(k){
-				setTimeout(function(){
-					that.displaySort(that.sortQueen[k]);
-					that.showSort(that.sortQueen[k],k);
-				},(7-that.sortSpeed)*500*k)
-			})(k);
-		}
-	}
-	this.restart=function(){
-		$("#progressContainer").empty();
-		$(".analyse_container_left").empty();
-		var highestTimeoutId = setTimeout(";");
-		for (var i = 0 ; i < highestTimeoutId ; i++) {
-			clearTimeout(i); 
-		}
-	}
-	//输入数据
-	this.inputValue=function(input){
-		this.sortVal=input;
-	}
-	//生成随机数
-	this.randomValue=function(){
-		this.sortVal=[];
-		for(var i=0;i<this.sortNum;i++){
-			var t=Math.floor((Math.random()*200)+1);
-			this.sortVal.push(t);
-		}
-	}
-	//摧毁排序
-	this.destroySort=function(){
-		$("#progressContainer").empty();
-		$(".analyse_container_left").empty();
-		this.sortVal=[];
-		this.sortQueen=[]
-		this.clearTimeOut();
-	}
-	this.clearTimeOut=function(){
-		var highestTimeoutId = setTimeout(";");
-		for (var i = 0 ; i < highestTimeoutId ; i++) {
-			clearTimeout(i); 
-		}
+	// 执行完所有异步后整体上移
+	let lastThen = promiseThenArray[promiseThenArray.length-1];
+	lastThen.then(()=>{
+		setTimeout(()=>{
+			$('#progressContainer div').removeClass(" blockInsertMargin blockInsertActive")
+		})
+	})
+	// 异步的then返回新的异步
+	var that=this;
+	function promiseThen(p,k){
+		return p.then(()=>{
+			return new Promise((resolve)=>{
+				setTimeout(()=>{
+					that.insertSortDisplay(that.sortQueen[k],resolve);
+				},that.duration/4)
+			})
+		})
 	}
 }

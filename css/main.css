@@ -1,7 +1,7 @@
 /* 框架 */
 body {
 	width: 90%;
-	min-width:1100px;
+	min-width:1220px;
 	margin: 0px auto;
 	font-family: Arial, Helvetica;
 	font-size: 12px;
@@ -137,12 +137,13 @@ to {transform:scale(1);}
 
 /*****排序panel****/
 .panel_sort {
-	height: 370px;
+	height: 100%;
+	min-height: 150px;
 	margin-bottom: 40px;
 }
 .hljs{
 	height: 180px;
-	    padding-bottom: 15px;
+	padding-bottom: 15px;
 	overflow-y: hidden;
 }
 .hljs code{
@@ -394,11 +395,14 @@ margin: 0;
 #progressContainer {
 	width: 100%;
 	text-align: center;
+	margin-bottom: 20px;
+	animation: appear 0.5s ease;
 }
 #progressControl{
 	width: 100%;
 	text-align: center;
-	margin-top: 20px;
+	float: none!important;
+	margin-bottom: 30px;
 }
 #progressControl button{
 	padding: 5px 9px;
@@ -420,7 +424,7 @@ margin: 0;
 	z-index: 99;
 }
 #inputVal{
-	margin-top: 30px;
+	margin-top: 50px;
 	padding: 0px;
 	margin-bottom: 30px;
 }
@@ -430,19 +434,15 @@ margin: 0;
 	background-color: red;
 	margin-left: 10px;
 	position: relative;
-	transition: all 1s ease;
+	transition: all 1S ease;
 	display: inline-block;
-	animation: blockAppear 0.5s ease;
-}
-@keyframes blockAppear{
-	from{transform: translateX(-60px);}
-	to{transform: translateX(0px);}
 }
 .block span {
 	top: -20px;
 	position: absolute;
 	left: 15px;
 }
+
 #randomVal {
 	margin-top: 30px;
 	margin-left: 5%;

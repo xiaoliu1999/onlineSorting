@@ -2,16 +2,18 @@
  $(document).ready(function() {
 
 // --------------------------------------------页面初始化布局--------------------------------------------
-		 //页面刷新后停留在当前排序
+		 //获取当前排序类型
 		 var currSort=sessionStorage.getItem("sortType");
 		 //设置排序算法信息和实现伪码
 		  if(currSort!=null){ 
 		 	 $("#sortInfo").html(Info[currSort+"Info"]);
 		 	 $("code").html(Code[currSort+"Code"]);
 		 	 currentSort=currSort+"Sort";
-		  }else{
+			 $("#"+currSort).addClass('current');
+		  }else{ //默认为冒泡排序
 			  $("#sortInfo").html(Info["bubbleInfo"]);
 			  $("code").html(Code["bubbleCode"]);
+			  $("#bubble").addClass('current');
 		  }
 		  
 		 //代码高亮
@@ -25,8 +27,6 @@
 		location.reload();
 		var currentTab=$(this).attr("id");
 		sessionStorage.setItem('sortType',currentTab);
-		//动态加载js
-		// var src="<script src='js/" + currentSort +".js' type='text/javascript' charset='utf-8'> </scrip"+"t>";
  	});
 // --------------------------------------------输入数据按钮--------------------------------------------
 	$('#input').click(function(){
@@ -56,23 +56,28 @@
 	});
 // --------------------------------------------输入完成按钮--------------------------------------------
 	$("#progressContainer").on('click','#btn_inputComplete',function(){
-	    sortObj.clearTimeOut();
-	     var input=[];
+	     sortObj.clearTimeOut();
+		 var input=[];
+		 let hasNull=false;
 	     for(var i=0;i<$("#progressContainer input").length;i++){
-	     	input.push(Number($("#progressContainer input").eq(i).val()));
+			 if($("#progressContainer input").eq(i).val()!=""){
+				 input[i] = Number($("#progressContainer input").eq(i).val());
+			 }else{
+				 hasNull=true;
+			 }
 	     }
-	     sortObj.inputValue(input);
-	     $('#progressContainer div').remove();
-	     $(".analyse_container_left").empty();
-	     sortObj.displayBlock(input);
-	     $("#start").show();
-	     $("#restart").show();
-	     $("#start").removeAttr('disabled');
-	     $("#restart").attr('disabled',true);
-		 $("#start").removeClass('btn_hover');
-		 $("#restart").addClass('btn_hover');
-		 
-		 
+		 if(!hasNull){
+			sortObj.inputValue(input);
+			$('#progressContainer div').remove();
+			$(".analyse_container_left").empty();
+			sortObj.displayBlock(input);
+			$("#start").show();
+			$("#restart").show();
+			$("#start").removeAttr('disabled');
+			$("#restart").attr('disabled',true);
+			$("#start").removeClass('btn_hover');
+			$("#restart").addClass('btn_hover'); 
+		 }
 	});
 // --------------------------------------------随机排序按钮--------------------------------------------
 	$('#random').click(function(){
@@ -113,7 +118,7 @@
 	  sortObj.sortNum=$("#inputRange").val();
 	})
 	$("#inputNum").on("change",function(){
-		$("#inputRange").css("backgroundSize",(100/15)*$("#inputNum").val());
+	  $("#inputRange").css("backgroundSize",(100/15)*$("#inputNum").val());
 	  $("#inputRange").val($("#inputNum").val());
 	  if($("#inputNum").val()>15) $("#inputNum").val(15);
 	  if($("#inputNum").val()<2) $("#inputNum").val(2);
@@ -124,6 +129,7 @@
 		$("#speedRange").css("backgroundSize",(100/6)*$("#speedRange").val());
 	  $("#sortSpeed").val($("#speedRange").val());
 	  sortObj.sortSpeed=$("#speedRange").val();
+	  sortObj.duration=(7-sortObj.sortSpeed) * 500;
 	})
 	$("#sortSpeed").on("change",function(){
 	  $("#speedRange").css("backgroundSize",(100/6)*$("#sortSpeed").val());
@@ -131,6 +137,7 @@
 	  if($("#sortSpeed").val()>6) $("#sortSpeed").val(6);
 	  if($("#sortSpeed").val()<1) $("#sortSpeed").val(1);
 	  sortObj.sortSpeed=$("#sortSpeed").val();
+	  sortObj.duration=(7-sortObj.sortSpeed) * 500;
 	})
 // --------------------------------------------开始,重开按钮--------------------------------------------
 	$("#start").click(function(){
@@ -138,7 +145,12 @@
 		for(var i=0;i<sortObj.sortVal.length;i++ ){
 			sortValue.push(sortObj.sortVal[i]);
 		}
-		sortObj.bubbleSort(sortValue);
+		if(currSort == 'bubble') {
+			sortObj.bubbleSort(sortValue);
+		}
+		if(currSort == 'insert') {
+			sortObj.insertSort(sortValue);
+		}
 		sortObj.startSort();
 		////启用禁用开始按钮
 		$(this).attr('disabled',true);

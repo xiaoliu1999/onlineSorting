@@ -45,11 +45,11 @@ sortInit.prototype.bubbleSortDisplay=function(bubbleDom){
 			preDom.remove(); 
 			preDom.insertAfter(lastDom);
 		} 
-	},(7-this.sortSpeed)*500/2);
+	},this.duration/2);
 	setTimeout(function(){
 		preDom.css("backgroundColor","#ff0000");
 		lastDom.css("backgroundColor","#ff0000");
-	},(7-this.sortSpeed)*500/2);
+	},this.duration/2);
 }
 sortInit.prototype.bubbleSortAnalyse=function(bubbleDom,k){
 	var pre=bubbleDom.pre.value;
@@ -74,17 +74,8 @@ sortInit.prototype.bubbleSortStart=function(){
 			setTimeout(function(){
 				that.bubbleSortDisplay(that.sortQueen[k]);
 				that.bubbleSortAnalyse(that.sortQueen[k],k);
-			},(7-that.sortSpeed)*500*k)
+			},that.duration*k)
 		})(k);
 	}
 }
-sortInit.prototype.bubbleSortRetart=function(){
-	$("#progressContainer").empty();
-	$(".analyse_container_left").empty();
-	var highestTimeoutId = setTimeout(";");
-	for (var i = 0 ; i < highestTimeoutId ; i++) {
-		clearTimeout(i); 
-	}
-}
- 
  

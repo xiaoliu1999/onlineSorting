@@ -1,0 +1,23 @@
+.blockInsertMargin{
+	transform: translateY(230px);
+	margin-bottom: 230px;
+	transition: all .5s ease;
+}
+.blockInsertActive{
+	transform: translateY(0px);
+	
+}
+.blockBlack{
+	background-color: #000000;
+}
+.blockInsertMoveLeft{
+	transform: translateX(-60px);
+}
+@keyframes appearRight{
+	from{transform: translateX(50px);}
+	to{transform: translateX(0px);}
+}
+.curData{
+	color: red;
+	padding: 0px;
+}

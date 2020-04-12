@@ -79,5 +79,10 @@
 	box-shadow: 0 -2px 3px -2px rgba(0, 0, 0, .5);
 	background-color: #fff;
 }
-
+.current a{
+	background: #fff!important;
+}
+.current a::after{
+	background: #fff!important;
+}
  
