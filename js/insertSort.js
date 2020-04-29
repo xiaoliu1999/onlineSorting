@@ -90,7 +90,7 @@ sortInit.prototype.insertSortDisplay = function(insertDom,resolveUp) {
 				},(this.duration/3)*(k+1))
 				// console.log("当前k="+curK)
 			}
-		// 向前插入完毕，结束当前数值插入
+		// 向前插入完毕，结束当前数值插入,resolveUp返回insertSortStart 结束本趟排序
 		}).then(()=>{
 			setTimeout(()=>{
 				var cDom = $('.blockInsertActive');

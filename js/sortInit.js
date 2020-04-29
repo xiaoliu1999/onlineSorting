@@ -68,6 +68,7 @@ function sortInit(){
 	this.startSort=function(){
 		if(currentSort=="bubbleSort") this.bubbleSortStart();
 		else if(currentSort=="insertSort") this.insertSortStart();
+		else if(currentSort=="selectSort") this.selectSortStart();
 		else alert("开发中")
 	}
 	this.restart=function(){

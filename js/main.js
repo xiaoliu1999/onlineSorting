@@ -5,7 +5,7 @@
 		 //获取当前排序类型
 		 var currSort=sessionStorage.getItem("sortType");
 		 //设置排序算法信息和实现伪码
-		  if(currSort!=null){ 
+		  if(currSort!=null){ //切换算法显示不同的信息，数据来自data.js
 		 	 $("#sortInfo").html(Info[currSort+"Info"]);
 		 	 $("code").html(Code[currSort+"Code"]);
 		 	 currentSort=currSort+"Sort";
@@ -16,13 +16,14 @@
 			  $("#bubble").addClass('current');
 		  }
 		  
-		 //代码高亮
+		 //算法实现代码高亮，调用highlightjs插件
 		 hljs.initHighlightingOnLoad();
 	    $('pre code').each(function(i, e) {hljs.highlightBlock(e)});
 		
 		 //新建对象
 	     var sortObj=new sortInit();
 // --------------------------------------------导航tab切换--------------------------------------------
+	// 点击导航栏后刷新界面，同时用Storage存储当前的点击的排序信息，界面加载后读取Storage显示排序信息
  	$('#tabs li').click(function() {
 		location.reload();
 		var currentTab=$(this).attr("id");
@@ -35,7 +36,7 @@
 		 $(".panel").eq(1).show();
 		 
 		 $(window).scrollTop(450);
-		 //修改btn组位置
+		 //修改按钮控制组的位置
 		 $(".btn_start_restart").width(60+"%");
 		 
 		 //如果已经进行排序，点击按钮则销毁上次排序
@@ -150,6 +151,10 @@
 		}
 		if(currSort == 'insert') {
 			sortObj.insertSort(sortValue);
+		}
+		if(currSort == 'select') {
+			console.log(sortObj)
+			sortObj.selectSort(sortValue);
 		}
 		sortObj.startSort();
 		////启用禁用开始按钮
