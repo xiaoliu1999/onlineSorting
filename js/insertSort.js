@@ -1,7 +1,7 @@
 //用于存放排序过程中的节点
 function insertDom() {
-	// curData为{}对象，格式{index:0,value:1}
-	// insertHistory为{}对象数组，存放比较记录，每个{}格式为{index:0,value:1}
+	// curData为当前插入元素，格式{index:0,value:1}
+	// insertHistory为比较历史数组，存放当前插入元素的比较记录，每个元素格式为{index:0,value:1}
 	this.curData = {};
 	this.insertHistory = [];
 }
@@ -15,18 +15,23 @@ sortInit.prototype.insertSort = function(arr) {
 	for (var i = 0; i < len; i++) {
 		preIndex = i - 1;
 		current = arr[i];
+		// 新建对象,存放插入数值
 		var iDom = new insertDom();
 		iDom.curData = { index:i , value:current}
 		while(preIndex >= 0 && arr[preIndex] > current) {
-			this.changeTime++;
+			// 交换次数增加
+			this.compareTime++;
+			// 存放插入位置查找历史
 			var ins = { index:preIndex , value:arr[preIndex] };
 			iDom.insertHistory.push(ins);
 			arr[preIndex+1] = arr[preIndex];
 			preIndex--;
 		}
 		arr[preIndex+1] = current;
+		// 将当前趟排序存入数组
 		this.sortQueen.push(iDom);
-		this.compareTime++;
+		// 比较次数增加
+		this.changeTime++;
 	}
 	console.log(this.sortQueen);
 }
@@ -109,18 +114,21 @@ sortInit.prototype.insertSortAnalyse = function(curData,inOrder,preData) {
 	if(inOrder) {
 		curP=`<p class="curData">${curData}：已有序</p>`
 	}else{
-		curP=`<p class="curData">${curData}：向前插入</p>`
+		curP=`<p class="curData">${curData}：向前寻找插入位置</p>`
 	}
 	 $(".analyse_container_left").append(curP)
 	var offset_p = 45 * this.compareTime;
 	$(".analyse_container_left").scrollTop(offset_p);
-	$(".analyse_container_right p").eq(2).text("比较次数为" + this.compareTime);
-	$(".analyse_container_right p").eq(3).text("交换次数为" + this.changeTime);
+	// $(".analyse_container_right p").eq(2).text("比较次数为" + this.compareTime);
+	// $(".analyse_container_right p").eq(3).text("交换次数为" + this.changeTime);
 }
 // 开始排序
 sortInit.prototype.insertSortStart = function() {
 	// 整体下移
 	$('#progressContainer div').addClass("blockInsertMargin")
+	setTimeout(()=>{
+		$(window).scrollTop(475)
+	},200)
 	// 存放异步操作的数组
 	let promiseThenArray=[];
 	// 新建异步,执行第一个数值的排序展示

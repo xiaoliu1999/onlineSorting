@@ -48,8 +48,25 @@
 		
 		 //输入完成
 		//显示排序分析
-		 $(".analyse_container_right p").eq(0).text(time.bubbleTime);
-		 $(".analyse_container_right p").eq(1).text(space.bubbleTime);
+		 //显示排序分析
+		 var currSortTime=sessionStorage.getItem("sortType")+"Time";
+		 var currSortSpace=sessionStorage.getItem("sortType")+"Space";
+		 var currSortStab=sessionStorage.getItem("sortType")+"Stab";
+		 for(item in time){
+		 	if(item == currSortTime){
+		 		 $(".analyse_container_right p").eq(0).text(time[item]);
+		 	} 
+		 }
+		 for(item in space){
+		 	if(item == currSortSpace){
+		 		 $(".analyse_container_right p").eq(1).text(space[item]);
+		 	} 
+		 }
+		 for(item in stab){
+		 	if(item == currSortStab){
+		 		 $(".analyse_container_right p").eq(2).text(stab[item]);
+		 	} 
+		 }
 		 
 		 //启用禁用开始按钮
 		  $("#start").hide();
@@ -107,10 +124,24 @@
 		$("#restart").addClass('btn_hover');
 		
 		//显示排序分析
-		 $(".analyse_container_right p").eq(0).text(time.bubbleTime);
-		 $(".analyse_container_right p").eq(1).text(space.bubbleTime);
-				
-		
+		var currSortTime=sessionStorage.getItem("sortType")+"Time";
+		var currSortSpace=sessionStorage.getItem("sortType")+"Space";
+		var currSortStab=sessionStorage.getItem("sortType")+"Stab";
+		for(item in time){
+			if(item == currSortTime){
+				 $(".analyse_container_right p").eq(0).text(time[item]);
+			} 
+		}
+		for(item in space){
+			if(item == currSortSpace){
+				 $(".analyse_container_right p").eq(1).text(space[item]);
+			} 
+		}
+		for(item in stab){
+			if(item == currSortStab){
+				 $(".analyse_container_right p").eq(2).text(stab[item]);
+			} 
+		}
 	});
 // --------------------------------------------数据个数,排序速度按钮--------------------------------------------
 	$("#inputRange").on("change",function(){

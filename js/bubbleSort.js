@@ -1,7 +1,7 @@
 //用于存放排序过程中的节点
 function bubbleDom(){
-	//pre和last为相邻节点，格式：{index:0,value:1} index为节点下标，value为节点值
-	//exchange标记相邻节点是否交换
+	//pre和last为每次比较的节点，格式：{index:0,value:1} index为节点下标，value为节点值
+	//exchange标记比较的节点是否交换
 	this.pre={};
 	this.last={};
 	this.exchange=false;
@@ -25,12 +25,15 @@ sortInit.prototype.bubbleSort=function(arr){
 				arr[j+1] = arr[j];
 				arr[j] = temp;
 				bDom.exchange=true;
+				// 交换次数增加
 				this.changeTime++;
 				sorted=true;
 			}else{
 				bDom.exchange=false;
 			}
+			// 将对象存入数组
 			this.sortQueen.push(bDom);
+			// 比较次数增加
 			this.compareTime++;
 		}
 	}
@@ -64,8 +67,8 @@ sortInit.prototype.bubbleSortAnalyse=function(bubbleDom,k){
 	$(".analyse_container_left").scrollTop(offset_p);
 	$(".analyse_container_left p").removeClass("analyse_current_p");
 	$(".analyse_container_left p").eq(k).addClass("analyse_current_p");
-	$(".analyse_container_right p").eq(2).text("比较次数为"+this.compareTime);
-	$(".analyse_container_right p").eq(3).text("交换次数为"+this.changeTime);
+	// $(".analyse_container_right p").eq(2).text("比较次数为"+this.compareTime);
+	// $(".analyse_container_right p").eq(3).text("交换次数为"+this.changeTime);
 }
 sortInit.prototype.bubbleSortStart=function(){
 	var that=this;

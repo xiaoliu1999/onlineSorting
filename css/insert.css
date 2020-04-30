@@ -1,23 +1,50 @@
-.blockInsertMargin{
+.blockInsertMargin {
 	transform: translateY(230px);
 	margin-bottom: 230px;
 	transition: all .5s ease;
 }
-.blockInsertActive{
+
+.blockInsertActive {
 	transform: translateY(0px);
-	
+
 }
-.blockBlack{
+
+.blockBlack {
 	background-color: #000000;
 }
-.blockInsertMoveLeft{
+
+.blockInsertMoveLeft {
 	transform: translateX(-60px);
 }
-@keyframes appearRight{
-	from{transform: translateX(50px);}
-	to{transform: translateX(0px);}
+
+@keyframes appearRight {
+	from {
+		transform: translateX(50px);
+	}
+
+	to {
+		transform: translateX(0px);
+	}
 }
-.curData{
+
+.curData {
 	color: red;
 	padding: 0px;
+}
+
+/* select */
+.newContainer {
+	position: absolute;
+	top: 90px;
+	left: 0px;
+	width: 100%;
+	height: 250px;
+	display: flex;
+	justify-content: center;
+}
+.newBlock{
+	width:50px ;
+	margin-left: 10px;
+	background-color: red;
+	align-items: flex-end;
 }
