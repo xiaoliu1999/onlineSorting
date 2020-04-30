@@ -49,8 +49,7 @@
  		sortObj.initInputSort($("#inputNum").val());
 
  		//输入完成
- 		//显示排序分析
- 		//显示排序分析
+ 	
  		if (currSort != null) { //切换算法显示不同的信息，数据来自data.js
  			var currSortTime = currSort + "Time";
  			var currSortSpace = currSort + "Space";
@@ -60,6 +59,7 @@
  			var currSortSpace = "bubbleSpace";
  			var currSortStab = "bubbleStab";
  		}
+		console.log(currSortTime)
  		for (item in time) {
  			if (item == currSortTime) {
  				$(".analyse_container_right p").eq(0).text(time[item]);
@@ -141,6 +141,7 @@
  			var currSortSpace = "bubbleSpace";
  			var currSortStab = "bubbleStab";
  		}
+		console.log(currSortTime)
  		for (item in time) {
  			if (item == currSortTime) {
  				$(".analyse_container_right p").eq(0).text(time[item]);
@@ -187,6 +188,8 @@
  	})
  	// --------------------------------------------开始,重开按钮--------------------------------------------
  	$("#start").click(function() {
+		if(currSort == null) currSort = 'bubble'
+		console.log(currSort)
  		var sortValue = new Array();
  		for (var i = 0; i < sortObj.sortVal.length; i++) {
  			sortValue.push(sortObj.sortVal[i]);
