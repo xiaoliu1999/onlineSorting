@@ -135,7 +135,7 @@ sortInit.prototype.selectSortStart = function() {
 	// 整体下移
 	$('#progressContainer div').addClass("blockInsertMargin")
 	setTimeout(()=>{
-		$(window).scrollTop(475)
+		$(window).scrollTop(1000)
 	},200)
 	// 存放异步操作的数组
 	let promiseThenArray = [];
