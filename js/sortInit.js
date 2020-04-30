@@ -53,9 +53,14 @@ function sortInit(){
 			(function(val){
 				//数值块
 				var div=$("<div class='block'></div>");
-				if(val>200) div.height(200);
-				else div.height(val);
-				div.css('marginTop',200-val);
+				if(val>200){
+					div.height(200);
+					div.css('marginTop',0);
+				} 
+				else{
+					div.height(val);
+					div.css('marginTop',200-val);
+				} 
 				$('#progressContainer').append(div);
 				//数值
 				var span=$("<span></span>");
