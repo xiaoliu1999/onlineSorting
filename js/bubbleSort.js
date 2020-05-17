@@ -8,7 +8,6 @@ function bubbleDom(){
 }
 sortInit.prototype.sortQueen=[];
 sortInit.prototype.bubbleSort=function(arr){
-	this.changeTime=0;
 	this.compareTime=0;
 	this.sortQueen=[];
 	var len = arr.length;
@@ -25,20 +24,17 @@ sortInit.prototype.bubbleSort=function(arr){
 				arr[j+1] = arr[j];
 				arr[j] = temp;
 				bDom.exchange=true;
-				// 交换次数增加
-				this.changeTime++;
 				sorted=true;
 			}else{
 				bDom.exchange=false;
 			}
 			// 将对象存入数组
 			this.sortQueen.push(bDom);
-			// 比较次数增加
-			this.compareTime++;
 		}
 	}
 }
 sortInit.prototype.bubbleSortDisplay=function(bubbleDom){
+	console.log(bubbleDom)
 	var preDom=$('#progressContainer div').eq(bubbleDom.pre.index);
 	var lastDom=$('#progressContainer div').eq(bubbleDom.last.index);
 	preDom.css("backgroundColor","#000000");
@@ -67,8 +63,6 @@ sortInit.prototype.bubbleSortAnalyse=function(bubbleDom,k){
 	$(".analyse_container_left").scrollTop(offset_p);
 	$(".analyse_container_left p").removeClass("analyse_current_p");
 	$(".analyse_container_left p").eq(k).addClass("analyse_current_p");
-	// $(".analyse_container_right p").eq(2).text("比较次数为"+this.compareTime);
-	// $(".analyse_container_right p").eq(3).text("交换次数为"+this.changeTime);
 }
 sortInit.prototype.bubbleSortStart=function(){
 	var that=this;

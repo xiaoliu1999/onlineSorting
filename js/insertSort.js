@@ -7,7 +7,6 @@ function insertDom() {
 }
 // 排序实现
 sortInit.prototype.insertSort = function(arr) {
-	this.changeTime = 0;
 	this.compareTime = 0;
 	this.sortQueen = [];
 	var len = arr.length;
@@ -30,13 +29,12 @@ sortInit.prototype.insertSort = function(arr) {
 		arr[preIndex+1] = current;
 		// 将当前趟排序存入数组
 		this.sortQueen.push(iDom);
-		// 比较次数增加
-		this.changeTime++;
 	}
 	console.log(this.sortQueen);
 }
 // 排序演示
 sortInit.prototype.insertSortDisplay = function(insertDom,resolveUp) {
+	console.log(insertDom)
 	var curDom = $('#progressContainer div').eq(insertDom.curData.index);
 	var preDom = $('#progressContainer div').eq(insertDom.curData.index-1)
 	var curLength=insertDom.insertHistory.length;
@@ -119,15 +117,13 @@ sortInit.prototype.insertSortAnalyse = function(curData,inOrder,preData) {
 	 $(".analyse_container_left").append(curP)
 	var offset_p = 45 * this.compareTime;
 	$(".analyse_container_left").scrollTop(offset_p);
-	// $(".analyse_container_right p").eq(2).text("比较次数为" + this.compareTime);
-	// $(".analyse_container_right p").eq(3).text("交换次数为" + this.changeTime);
 }
 // 开始排序
 sortInit.prototype.insertSortStart = function() {
 	// 整体下移
 	$('#progressContainer div').addClass("blockInsertMargin")
 	setTimeout(()=>{
-		$(window).scrollTop(1000)
+		$(window).scrollTop(680)
 	},200)
 	// 存放异步操作的数组
 	let promiseThenArray=[];

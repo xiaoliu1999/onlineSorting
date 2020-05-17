@@ -1,0 +1,233 @@
+.blockInsertMargin {
+	transform: translateY(230px);
+	margin-bottom: 230px;
+	transition: all .5s ease;
+}
+
+.blockInsertActive {
+	transform: translateY(0px);
+
+}
+
+.blockBlack {
+	background-color: #000000;
+}
+
+.blockInsertMoveLeft {
+	transform: translateX(-60px);
+}
+
+@keyframes appearRight {
+	from {
+		transform: translateX(50px);
+	}
+
+	to {
+		transform: translateX(0px);
+	}
+}
+
+.curData {
+	color: red;
+	padding: 0px;
+}
+
+/* select */
+.newprogressContainer {
+	position: absolute;
+	top: 90px;
+	left: 0px;
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: flex-end;
+	height: 200px;
+}
+
+.newBlock {
+	width: 50px;
+	margin-left: 10px;
+	background-color: red;
+	align-items: flex-end;
+	position: relative;
+	animation: slideUp .5s ease;
+	display: inline-block;
+}
+
+@keyframes slideUp {
+	from {
+		transform: translateY(200px);
+	}
+
+	to {
+		transform: translateY(0px);
+	}
+}
+
+.newBlock span {
+	top: -20px;
+	position: absolute;
+	left: 15px;
+}
+
+/* quick */
+
+.blackBlock {
+	background-color: #000000 !important;
+}
+
+.curGap {
+	position: absolute;
+	top: 20px;
+	left: 20px;
+	color: red;
+	font-size: 14px;
+	font-weight: 400;
+
+}
+/* heap */
+.heapContainer {
+	width: 870px;
+	display: flex;
+	flex-wrap: wrap;
+	min-height: 100px;
+}
+.circle,
+.blank {
+	width: 6.66%;
+	height: 50px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.heapNode {
+	background-color: red;
+	width: 40px;
+	height: 40px;
+	border-radius: 50%;
+	line-height: 40px;
+	text-align: center;
+	color: #fff;
+	position: relative;
+	animation: nodeAppear .5s ease;
+}
+@keyframes nodeAppear{
+	from{width: 0px;height: 0px;}
+	to{width: 40px;height: 40px;}
+}
+.heapNodeDisappear{
+	width: 0px;
+	height: 0px;
+	animation: nodeDisappear .5s ease;
+}
+@keyframes nodeDisappear{
+	from{width: 40px;height: 40px;}
+	to{width: 0px;height: 0px;}
+}
+.heapNode_left1::before {
+	content: "";
+	border: none;
+	position: absolute;
+	transform: skew(-76deg);
+	left: -97px;
+	height: 59px;
+	width: 10px;
+	top: 14px;
+	background-color: red;
+	z-index: -1;
+	animation: appear1 1s ease;
+}
+
+.heapNode_right1::after {
+	content: "";
+	border: none;
+	position: absolute;
+	transform: skew(76deg);
+	left: 124px;
+	height: 59px;
+	width: 10px;
+	top: 14px;
+	background-color: red;
+	z-index: -1;
+	animation: appear1 1s ease;
+}
+@keyframes appear1{
+	from{height: 0px;}
+	to{height: 59px;}
+}
+.heapNode_left2::before {
+	content: "";
+	border: none;
+	position: absolute;
+	transform: skew(-70deg);
+	left: -41px;
+	height: 41px;
+	width: 7px;
+	top: 21px;
+	background-color: red;
+	z-index: -1;
+	animation: appear2 1s ease;
+}
+@keyframes appear2{
+	from{height: 0px;}
+	to{height: 41px;}
+}
+.heapNode_right2::after {
+	content: "";
+	border: none;
+	position: absolute;
+	transform: skew(66deg);
+	left: 75px;
+	height: 47px;
+	width: 7px;
+	top: 24px;
+	background-color: red;
+	z-index: -1;
+	animation: appear3 1s ease;
+}
+@keyframes appear3{
+	from{height: 0px;}
+	to{height: 47px;}
+}
+.heapNode_left3::before {
+	content: "";
+	border: none;
+	position: absolute;
+	transform: skew(-45deg);
+	left: -5px;
+	height: 40px;
+	width: 5px;
+	top: 19px;
+	background-color: red;
+	z-index: -1;
+	animation: appear4 1s ease;
+}
+@keyframes appear4{
+	from{height: 0px;}
+	to{height: 40px;}
+}
+.heapNode_right3::after {
+	content: "";
+	border: none;
+	position: absolute;
+	transform: skew(48deg);
+	left: 48px;
+	height: 38px;
+	width: 5px;
+	top: 28px;
+	background-color: red;
+	z-index: -1;
+	animation: appear5 1s ease;
+}
+@keyframes appear5{
+	from{height: 0px;}
+	to{height: 38px;}
+}
+.circleDisappear{
+	animation:lineDisappear .5s ease;
+	transform:scale(360deg);
+}
+@keyframes lineDisappear{
+	from{	transform: scale(0deg);}
+	to{	transform: scale(0deg);}
+}

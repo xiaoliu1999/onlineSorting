@@ -96,7 +96,11 @@
  			sortObj.inputValue(input);
  			$('#progressContainer div').remove();
  			$(".analyse_container_left").empty();
- 			sortObj.displayBlock(input);
+			if(currSort == 'heap'){
+				sortObj.displayHeap(sortObj.sortVal);
+			}else{
+				sortObj.displayBlock(sortObj.sortVal);
+			}
  			$("#start").show();
  			$("#restart").show();
  			$("#start").removeAttr('disabled');
@@ -119,8 +123,11 @@
 
  		//随机生成数据，显示，排序
  		sortObj.randomValue();
- 		sortObj.initRandomSort(sortObj.sortVal);
-
+		if(currSort == 'heap'){
+			sortObj.initRandomSort(sortObj.sortVal,'heap');
+		}else{
+			sortObj.initRandomSort(sortObj.sortVal,'notHeap');
+		}
  		$(window).scrollTop(450);
 
  		//启用禁用开始按钮
@@ -141,7 +148,7 @@
  			var currSortSpace = "bubbleSpace";
  			var currSortStab = "bubbleStab";
  		}
-		console.log(currSortTime)
+		// console.log(currSortTime)
  		for (item in time) {
  			if (item == currSortTime) {
  				$(".analyse_container_right p").eq(0).text(time[item]);
@@ -169,7 +176,7 @@
  		$("#inputRange").val($("#inputNum").val());
  		if ($("#inputNum").val() > 15) $("#inputNum").val(15);
  		if ($("#inputNum").val() < 2) $("#inputNum").val(2);
- 		sortObj.sortSpeed = $("#inputNum").val();
+ 		sortObj.sortNum = $("#inputNum").val();
  	})
  	// --------------------------------------------//////////////排序速度控制
  	$("#speedRange").on("change", function() {
@@ -201,9 +208,20 @@
  			sortObj.insertSort(sortValue);
  		}
  		if (currSort == 'select') {
- 			console.log(sortObj)
  			sortObj.selectSort(sortValue);
  		}
+		if (currSort == 'quick') {
+			sortObj.quickSort(sortValue,0,sortObj.sortNum - 1);
+		}
+		if (currSort == 'shell') {
+			sortObj.shellSort(sortValue);
+		}
+		if (currSort == 'merge') {
+			sortObj.mergeSort(sortValue);
+		}
+		if (currSort == 'heap') {
+			sortObj.heapSort(sortValue);
+		}
  		sortObj.startSort();
  		////启用禁用开始按钮
  		$(this).attr('disabled', true);
@@ -211,11 +229,14 @@
  		$(this).addClass("btn_hover");
  		$("#restart").removeClass('btn_hover');
  		//显示排序分析
+		if($(window).scrollTop() > 600){
+			$('.analyse_container_left').addClass('fixedAnalyse')
+		}
  	})
  	$("#restart").click(function() {
  		if (sortObj.valueType == "random") {
  			sortObj.restart();
- 			sortObj.initRandomSort(sortObj.sortVal)
+ 			sortObj.initRandomSort(sortObj.sortVal,currSort)
  			sortObj.startSort();
  		} else {
  			sortObj.restart();
@@ -223,7 +244,12 @@
  			for (var i = 0; i < $("#inputNum").val(); i++) {
  				$("#inputVal input").eq(i).val(sortObj.sortVal[i]);
  			}
- 			sortObj.displayBlock(sortObj.sortVal);
+			console.log(currSort)
+			if(currSort == 'heap'){
+				sortObj.displayHeap(sortObj.sortVal);
+			}else{
+				sortObj.displayBlock(sortObj.sortVal);
+			}
  			sortObj.startSort();
  		}
 
@@ -236,6 +262,12 @@
  		} else {
  			$("#backTop").show();
  		}
+		// 分析面板
+		if ($(window).scrollTop() < 600) {
+			$('.analyse_container_left').removeClass('fixedAnalyse')
+		} else {
+			$('.analyse_container_left').addClass('fixedAnalyse')
+		}
  	});
 
  	// --------------------------------------------背景粒子初始化--------------------------------------------

@@ -7,7 +7,6 @@ function selectDom() {
 }
 
 sortInit.prototype.selectSort = function(arr) {
-	this.changeTime = 0;
 	this.compareTime = 0;
 	this.sortQueen = [];
 	var len = arr.length;
@@ -42,9 +41,6 @@ sortInit.prototype.selectSort = function(arr) {
 		temp = arr[i];
 		arr[i] = arr[minIndex];
 		arr[minIndex] = temp;
-		if(minIndex != min){
-			this.changeTime++;
-		}
 		// 将当前趟排序存入数组
 		this.sortQueen.push(sDom);
 	}
@@ -69,7 +65,7 @@ sortInit.prototype.selectSortDisplay = function(selectDom, resolveUp, kIndex) {
 							preDom.css("backgroundColor", "#ff0000")
 						}
 						curDom.css("backgroundColor", "#000000")
-						curDom.addClass("blockInsertActive")
+						curDom.addClass("blockInsertActive");
 						curDom.siblings().removeClass("blockInsertActive")
 						// 极小值index+1，寻找下一个极小值
 						if (minIndex < selectDom.selectHistory.length - 1) {
@@ -127,15 +123,14 @@ sortInit.prototype.selectSortAnalyse = function(selectDom, k,showTitle) {
 	}
 	var offset_p = 45 * this.compareTime;
 	$(".analyse_container_left").scrollTop(offset_p);
-	// $(".analyse_container_right p").eq(2).text("比较次数为" + this.compareTime);
-	// $(".analyse_container_right p").eq(3).text("交换次数为" + this.changeTime);
+	
 }
 // 开始排序
 sortInit.prototype.selectSortStart = function() {
 	// 整体下移
 	$('#progressContainer div').addClass("blockInsertMargin")
 	setTimeout(()=>{
-		$(window).scrollTop(1000)
+		$(window).scrollTop(680)
 	},200)
 	// 存放异步操作的数组
 	let promiseThenArray = [];
