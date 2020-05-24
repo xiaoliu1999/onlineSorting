@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html>
 	<link rel="stylesheet" type="text/css" href="css/main.css" />
-	<link rel="stylesheet" type="text/css" href="css/others.css" />
+	<link rel="stylesheet" type="text/css" href="css/btns.css" />
 	<link rel="stylesheet" type="text/css" href="css/tab.css" />
+	<link rel="stylesheet" type="text/css" href="css/others.css" />
 	<link rel="stylesheet" type="text/css" href="css/dark.css" />
 	<head>
 		<meta charset="utf-8" />
@@ -10,52 +11,64 @@
 		<title>排序算法在线演示系统</title>
 	</head>
 	<body>
-		<p class="title">排序算法在线演示系统</p>
-		<div class="main">
-			<ul id="tabs">
-				<li id="bubble"><a href="#" >冒泡排序</a></li>
-				<li id="insert"><a href="#">插入排序</a></li>
-				<li id="select"><a href="#">选择排序</a></li>
-				<li id="shell"><a href="#">希尔排序</a></li>
-				<li id="merge"><a href="#">归并排序</a></li>
-				<li id="quick"><a href="#">快速排序</a></li>
-				<li id="heap"><a href="#">堆排序</a></li>
-				<!-- <li id="radix"><a href="#">基数排序</a></li> -->
-			</ul>
-			<div id="content">
-				<div id="tab1" class="content_container clearfix">
+		<!-- 头部信息 -->
+		<header>
+			<p class="title">排序算法在线演示系统</p>
+			<nav>
+				<ul id="tabs">
+					<li id="bubble"><a href="#">冒泡排序</a></li>
+					<li id="insert"><a href="#">插入排序</a></li>
+					<li id="select"><a href="#">选择排序</a></li>
+					<li id="shell"><a href="#">希尔排序</a></li>
+					<li id="heap"><a href="#">堆排序</a></li>
+				</ul>
+			</nav>
+		</header>
+		<div id="content">
+			<div id="tab1" class="content_container clearfix">
+				<!-- 排序信息 -->
+				<section>
 					<div class="left">
 						<div class="panel">
-						    <div class="panel_title">算法介绍</div>
-						    <div class="line left-line"></div>
-						    <div class="line right-line"></div>
+							<div class="panel_title">算法介绍</div>
+							<div class="line left-line"></div>
+							<div class="line right-line"></div>
 							<p id="sortInfo" class="infoActive"> </p>
 						</div>
-						<div class="panel"">
-						    <div class="panel_title" >排序分析</div>
-						    <div class="line left-line"></div>
-						    <div class="line right-line"></div>
+						<div class="panel">
+							<div class=" panel_title">排序分析</div>
+							<div class="line left-line"></div>
+							<div class="line right-line"></div>
 							<div class="analyse_container_left"></div>
 							<div class="analyse_container_right">
-								<p></p><p></p><p></p><p></p>
+								<p></p>
+								<p></p>
+								<p></p>
+								<p></p>
 							</div>
 						</div>
 					</div>
-					
 					<div class="right">
 						<div class="panel panel_code">
-						    <div class="panel_title">算法实现</div>
-						    <div class="line left-line"></div>
-						    <div class="line right-line"></div>
+							<div class="panel_title">算法实现</div>
+							<div class="line left-line"></div>
+							<div class="line right-line"></div>
 							<pre class="hljs"><code class="javascript"></code></pre>
 						</div>
 					</div>
+				</section>
+				<!-- 排序控制 -->
+				<section>
 					<div class="btn btn_start_restart">
-						<div class="num">数据个数：<input id="inputNum" type="number" value=10></input><input type="range" value=10 id="inputRange" max=15 min=2></div>
+						<div class="num">数据个数：<input id="inputNum" type="number" value=10></input><input type="range" value=10 id="inputRange"
+							 max=15 min=2></div>
 						<button id="input">输入数据</button><span>或</span><button id="random">随机数据</button>
-						<div class="speed">排序速度：<input id="sortSpeed" type="number" value=3></input><input type="range" value=3 id="speedRange" max=6 min=1></div>
+						<div class="speed">排序速度：<input id="sortSpeed" type="number" value=3></input><input type="range" value=3 id="speedRange"
+							 max=6 min=1></div>
 					</div>
-					
+				</section>
+				<!-- 排序演示 -->
+				<section>
 					<div class="bottom">
 						<div class="panel panel_sort">
 							<div class="panel_title">排序过程</div>
@@ -63,31 +76,32 @@
 							<div class="line right-line"></div>
 							<div id="progressContainer"></div>
 							<div id="progressControl" class="btn">
-								 <button id="start" >开始</button>
-								 <button id="restart">重开</button>
+								<button id="start">开始</button>
+								<button id="restart">重开</button>
 							</div>
 						</div>
 					</div>
-				</div>
+				</section>
 			</div>
 		</div>
-		
-		<div class="copyRight">Powered By ZhangXiaoliu</div>
+		<!-- 底部信息 -->
+		<footer>
+			<div class="copyRight">Powered By ZhangXiaoliu</div>
+		</footer>
 	</body>
 </html>
 
-<script src="js/jquery-3.2.1.min.js" type="text/javascript" charset="utf-8"></script>
-<script src="js/canvas-particle.js" type="text/javascript" charset="utf-8"></script>
-<script src="js/highlight.pack.js" type="text/javascript" charset="utf-8"></script>
-<script src="js/sortInit.js" type="text/javascript" charset="utf-8"></script>
-<script src="js/data.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/plugs/jquery-3.2.1.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/plugs/canvas-particle.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/plugs/highlight.pack.js" type="text/javascript" charset="utf-8"></script>
 
-<script src="js/bubbleSort.js" type="text/javascript" charset="utf-8"></script>
-<script src="js/insertSort.js" type="text/javascript" charset="utf-8"></script>
-<script src="js/selectSort.js" type="text/javascript" charset="utf-8"></script>
-<script src="js/quickSort.js" type="text/javascript" charset="utf-8"></script>
-<script src="js/shellSort.js" type="text/javascript" charset="utf-8"></script>
-<script src="js/mergeSort.js" type="text/javascript" charset="utf-8"></script>
-<script src="js/heapSort.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/core/sortInit.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/data/data.js" type="text/javascript" charset="utf-8"></script>
 
-<script src="js/main.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/main/bubbleSort.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/main/insertSort.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/main/selectSort.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/main/shellSort.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/main/heapSort.js" type="text/javascript" charset="utf-8"></script>
+
+<script src="js/core/main.js" type="text/javascript" charset="utf-8"></script>

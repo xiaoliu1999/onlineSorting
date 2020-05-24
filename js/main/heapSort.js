@@ -169,11 +169,6 @@ sortInit.prototype.heapSortAnalyse = function(curData, inOrder, preData) {
 }
 // 开始排序
 sortInit.prototype.heapSortStart = function() {
-
-	// setTimeout(()=>{
-	// 	$(window).scrollTop(680)
-	// },200)
-	// 存放异步操作的数组
 	let promiseThenArray = [];
 	// 新建异步,执行第一个数值的排序展示
 	let p = new Promise((resolve) => {

@@ -8,6 +8,7 @@ function sortInit() {
 	this.valueType = "" //random为随机排序;input为输入值
 	//排序序列初始化
 	this.initRandomSort = function(val, type) {
+		$('#progressContainer').empty();
 		//显示随机数字
 		var rand_p = $("<p id='randomVal'>随机数据为</p>");
 		$('#progressContainer').append(rand_p);
@@ -34,6 +35,7 @@ function sortInit() {
 	}
 	//排序输入框序列初始化
 	this.initInputSort = function(val) {
+		$('#progressContainer').empty();
 		//显示输入数字
 		$('#progressContainer').append("<p id='inputVal' class='btn'></p>");
 		$('#progressContainer p').append("<form onsubmit='return false;'>请输入:</form>");

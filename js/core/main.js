@@ -48,7 +48,6 @@
  		//显示输入数据
  		sortObj.initInputSort($("#inputNum").val());
 
- 		//输入完成
  	
  		if (currSort != null) { //切换算法显示不同的信息，数据来自data.js
  			var currSortTime = currSort + "Time";
