@@ -34,7 +34,7 @@ sortInit.prototype.heapSort = function(arr) {
 		// 前最大值，不需要再参与比较，所以第三个参数
 		// 为 i，即比较到最后一个结点前一个即可
 	}
-	console.log(this.sortQueen)
+	console.log(this.sortQueen,'排序记录数组')
 }
 
 sortInit.prototype.adjustHeap = function(arr, i, length) {
@@ -57,7 +57,7 @@ sortInit.prototype.adjustHeap = function(arr, i, length) {
 }
 // 排序演示
 sortInit.prototype.heapSortDisplay = function(heapDom, resolveUp, isFirst, k) {
-	console.log(heapDom.heapVal)
+	console.log(heapDom,'当前排序记录')
 	$('#progressContainer').css('minHeight', '350px')
 	// 首次
 	if (isFirst) {
@@ -89,7 +89,6 @@ sortInit.prototype.heapSortDisplay = function(heapDom, resolveUp, isFirst, k) {
 			this.compareTime++;
 			var offset_p = 45 * this.compareTime;
 			$(".analyse_container_left").scrollTop(offset_p);
-			console.log('jieshu')
 			resolveUp()
 		}, this.duration * 1.25)
 	} else {
@@ -103,9 +102,7 @@ sortInit.prototype.heapSortDisplay = function(heapDom, resolveUp, isFirst, k) {
 			var offset_p = 45 * this.compareTime;
 			$(".analyse_container_left").scrollTop(offset_p);
 			let i = heapDom.changeIndex + 1;
-			console.log(i)
 			while (i < this.sortNum) {
-				console.log(Math.ceil(i / 2) - 1)
 				if (i % 2 == 0) $('.heapNode').eq(Math.ceil(i / 2) - 1).removeClass('heapNode_right3')
 				if (i % 2 == 0) $('.heapNode').eq(Math.ceil(i / 2) - 1).removeClass('heapNode_right2')
 				if (i % 2 == 0) $('.heapNode').eq(Math.ceil(i / 2) - 1).removeClass('heapNode_right1')

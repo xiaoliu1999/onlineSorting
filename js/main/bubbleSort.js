@@ -32,9 +32,10 @@ sortInit.prototype.bubbleSort=function(arr){
 			this.sortQueen.push(bDom);
 		}
 	}
+	console.log(this.sortQueen,'排序记录数组')
 }
 sortInit.prototype.bubbleSortDisplay=function(bubbleDom){
-	console.log(bubbleDom)
+	console.log(bubbleDom,'当前排序记录')
 	var preDom=$('#progressContainer div').eq(bubbleDom.pre.index);
 	var lastDom=$('#progressContainer div').eq(bubbleDom.last.index);
 	preDom.css("backgroundColor","#000000");

@@ -33,6 +33,9 @@
  	});
  	// --------------------------------------------输入数据按钮--------------------------------------------
  	$('#input').click(function() {
+		//如果已经进行排序，点击按钮则销毁上次排序
+		if ($(".bottom").css("display") == 'block')sortObj.destroySort();
+		
  		//显示排序和分析模块
  		$(".bottom").show();
  		$(".panel").eq(1).show();
@@ -40,10 +43,6 @@
  		$(window).scrollTop(450);
  		//修改按钮控制组的位置
  		$(".btn_start_restart").width(60 + "%");
-
- 		//如果已经进行排序，点击按钮则销毁上次排序
- 		if (!($(".bottom").is(":hidden"))) sortObj.destroySort();
-
 
  		//显示输入数据
  		sortObj.initInputSort($("#inputNum").val());
@@ -58,7 +57,6 @@
  			var currSortSpace = "bubbleSpace";
  			var currSortStab = "bubbleStab";
  		}
-		console.log(currSortTime)
  		for (item in time) {
  			if (item == currSortTime) {
  				$(".analyse_container_right p").eq(0).text(time[item]);
@@ -110,15 +108,16 @@
  	});
  	// --------------------------------------------随机排序按钮--------------------------------------------
  	$('#random').click(function() {
+		//如果已经进行排序，点击按钮则销毁上次排序
+		if ($(".bottom").css("display") == 'block')sortObj.destroySort();
+		
  		//显示排序和分析模块
  		$(".bottom").show();
  		$(".panel").eq(1).show();
 
  		//修改btn组位置
  		$(".btn_start_restart").width(60 + "%");
-
- 		//如果已经进行排序，点击按钮则销毁上次排序
- 		if (!($(".bottom").is(":hidden"))) sortObj.destroySort();
+		
 
  		//随机生成数据，显示，排序
  		sortObj.randomValue();
@@ -147,7 +146,6 @@
  			var currSortSpace = "bubbleSpace";
  			var currSortStab = "bubbleStab";
  		}
-		// console.log(currSortTime)
  		for (item in time) {
  			if (item == currSortTime) {
  				$(".analyse_container_right p").eq(0).text(time[item]);
@@ -195,7 +193,6 @@
  	// --------------------------------------------开始,重开按钮--------------------------------------------
  	$("#start").click(function() {
 		if(currSort == null) currSort = 'bubble'
-		console.log(currSort)
  		var sortValue = new Array();
  		for (var i = 0; i < sortObj.sortVal.length; i++) {
  			sortValue.push(sortObj.sortVal[i]);

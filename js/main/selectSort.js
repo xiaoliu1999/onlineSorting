@@ -44,11 +44,11 @@ sortInit.prototype.selectSort = function(arr) {
 		// 将当前趟排序存入数组
 		this.sortQueen.push(sDom);
 	}
+	console.log(this.sortQueen,'排序记录数组')
 }
 // 排序演示
 sortInit.prototype.selectSortDisplay = function(selectDom, resolveUp, kIndex) {
-	console.log(selectDom)
-	console.log("当前k:" + kIndex)
+	console.log(selectDom,'当前排序记录')
 	var that = this;
 	new Promise((resolve) => {
 		that.selectSortAnalyse(selectDom, kIndex, true);

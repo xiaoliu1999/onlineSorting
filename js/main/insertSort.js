@@ -30,11 +30,11 @@ sortInit.prototype.insertSort = function(arr) {
 		// 将当前趟排序存入数组
 		this.sortQueen.push(iDom);
 	}
-	console.log(this.sortQueen);
+	console.log(this.sortQueen,'排序记录数组')
 }
 // 排序演示
 sortInit.prototype.insertSortDisplay = function(insertDom,resolveUp) {
-	console.log(insertDom)
+	console.log(insertDom,'当前排序记录')
 	var curDom = $('#progressContainer div').eq(insertDom.curData.index);
 	var preDom = $('#progressContainer div').eq(insertDom.curData.index-1)
 	var curLength=insertDom.insertHistory.length;
@@ -105,9 +105,6 @@ sortInit.prototype.insertSortDisplay = function(insertDom,resolveUp) {
 	}
 }
 sortInit.prototype.insertSortAnalyse = function(curData,inOrder,preData) {
-	console.log("当前："+curData);
-	console.log("是否有序："+inOrder);
-	console.log("比较："+preData);
 	let curP;
 	if(inOrder) {
 		curP=`<p class="curData">${curData}：已有序</p>`

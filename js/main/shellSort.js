@@ -88,10 +88,11 @@ sortInit.prototype.shellSort = function(arr) {
 		}
 		this.sortQueen.push(sDom)
 	}
-	console.log(this.sortQueen)
+	console.log(this.sortQueen,'排序记录数组')
 }
 // 排序演示
 sortInit.prototype.shellSortDisplay = function(shellDom, resolveUp) {
+	console.log(shellDom,'当前排序记录')
 	var that = this;
 	let colors = ['#FF0000', '#FF7F00', '#FFFF00', '#00FF00', '#00FFFF', '#0000FF', '#8B00FF']
 	for (let key in shellDom.group) {
@@ -160,7 +161,6 @@ sortInit.prototype.shellSortAnalyse = function(shellDom, resolveUp) {
 							if (item.groupId == i) {
 								if (num.indexOf(i) == -1) {
 									num += i.toString();
-									console.log(num)
 									let curGroup = `<p class="curIndex">第${i+1}组：${item.value}</p>`
 									$(".analyse_container_left").append(curGroup)
 								} else {
